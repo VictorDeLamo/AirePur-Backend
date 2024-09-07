@@ -1,0 +1,19 @@
+version: '3.9'  # Use the latest stable version (3.9 as of March 2024)
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts-alpine  # Lighter Alpine base image
+    container_name: jenkins
+    ports:
+      - "8081:8081"  # Expose Jenkins web UI
+      - "50000:50000"  # Optional for agent communication
+    volumes:
+      - jenkins_home:/var/jenkins_home  # Persistent storage for Jenkins data
+    networks:
+      - jenkins_net  # Connect to internal network
+
+networks:
+  jenkins_net:
+
+volumes:
+  jenkins_home:
